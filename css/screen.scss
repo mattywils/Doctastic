@@ -1,0 +1,438 @@
+---
+---
+
+/* -------------------------------
+
+	Table of Contents:
+
+	> Imports
+	> Variables
+	> Defauls
+	> Global
+	> Typography
+	> Navigation Bar
+	> Main Content
+	> Animation
+
+------------------------------- */
+
+
+/* Defaults ------------------------------- */
+@import url('syntax.css');
+
+
+/* Variables ------------------------------- */
+$color-primary: rgb(96,188,216);
+$color-primary-active: rgb(78,153,176);
+$color-primary-transparent: rgba(96,188,216,.9);
+
+$color-secondary: rgb(245,161,7);
+$color-secondary-active: rgb(250,215,87);
+
+$color-font-light: #fefefe;
+$color-font-dark: #333333;
+$color-font-gray: #777777;
+
+$color-background-light: #fdfdfd;
+$color-background-dark: #222222;
+
+$color-accent-gray: #f3f3f3;
+$color-accent-gray-active: #e0e0e0;
+
+$font-sans-serif-accent: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
+
+$media-query-break-small: 750px;
+
+
+/* Defaults ------------------------------- */
+::-moz-selection {
+    background: $color-primary;
+    color: $color-font-light;
+    text-shadow: none;
+}
+
+::selection {
+    background: $color-primary;
+    color: $color-font-light;
+    text-shadow: none;
+}
+
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+textarea, input, button { outline: none; }
+
+
+/* Global --------------------------------- */
+* {
+    box-sizing: border-box;
+
+    transition: all 0.3s ease;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    background-color: $color-background-light;
+    font-family: $font-sans-serif;
+    color: $color-font-dark;
+    font-size: 18px;
+}
+
+
+/* Typography --------------------------------- */
+h1 {
+	font-family: $font-sans-serif-accent;
+	font-size: 2.25em;
+	font-weight: 600;
+	margin: 0;
+	margin-bottom: .75em;
+
+	&:after {
+		    content: "";
+		    display: block;
+		    background: $color-primary-transparent;
+		    width: 100%;
+		    height: 4px;
+		    margin-top: .5em;
+	}
+}
+
+h2 {
+	font-family: $font-sans-serif-accent;
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font-family: $font-sans-serif-accent;
+	font-weight: 600;
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+h4 {
+	font-family: $font-sans-serif-accent;
+	font-weight: 600;
+}
+
+p {
+	font-size: 1em;
+	font-weight: 300;
+	line-height: 1.75em;
+	margin: 0;
+	margin-bottom: 1.5em;
+}
+
+strong {
+	font-weight: 600;
+}
+
+small {
+	font-weight: 300;
+}
+
+a {
+	text-decoration: none;
+	color: $color-secondary;
+	font-weight: 600;
+
+	&:hover {
+		color: $color-secondary-active;
+	}
+}
+
+
+/* Navigation Bar --------------------------------- */
+.navigationBar {
+	height: 100vh;
+	width: 375px;
+	position: fixed;
+	background-color: $color-accent-gray;
+	overflow-y: scroll;
+
+	.homeLink {
+		display: block;
+		background-image: url('../images/top-background-image.jpg');
+		background-size: cover;
+
+		.logo {
+			width: 100%;
+			padding: 50px;
+			background-color: $color-primary-transparent;
+		}
+
+		.textLogo {
+			display: block;
+			padding: 40px;
+			width: 100%;
+			text-align: center;
+			background-color: $color-primary-transparent;
+			color: $color-font-light;
+			font-weight: 300;
+			font-size: 56px;
+			font-family: $font-sans-serif-accent;
+			letter-spacing: 2px;
+		}
+
+		small {
+			display: block;
+			margin-top: -65px;
+			position: absolute;
+			text-align: center;
+			width: 100%;
+
+			.text {
+				color: transparent;
+				font-weight: 300;
+				letter-spacing: 1px;
+			}
+
+			i {
+				color: transparent;
+				font-size: 1.25em;
+				padding: 12px;
+			}
+		}
+
+		&:hover {
+			border: none;
+
+			small {
+				margin-top: -55px;
+
+				.text {
+					color: $color-font-light;
+				}
+
+				i {
+					color: $color-font-light;
+				}
+			}
+		}
+	}
+
+	.search {
+		background-color: rgba(255,255,255,.85);
+		padding: 20px;
+
+		button {
+			background-color: transparent;
+			border: none;
+			position: absolute;
+			padding: 12px 15px;
+		}
+
+		input {
+			background-color: transparent;
+			border: 2px solid $color-primary;
+			border-radius: 8px;
+			font-size: 16px;
+			padding: 12px 12px 12px 45px;
+			width: 100%;
+
+			transition: border 0.3s ease;
+
+			&:focus {
+				border: 2px solid $color-secondary;
+			}
+		}
+	}
+
+	.modileNavigationButton {
+		background-color: $color-primary;
+		color: $color-font-light;
+		cursor: pointer;
+		display: none;
+		font-size: 1.15em;
+		padding: 20px;
+		text-align: center;
+		width: 100%;
+
+		i {
+			padding-right: 10px;
+		}
+
+		@media screen and (max-width: $media-query-break-small) {
+			display: block;
+		}
+	}
+
+	.navigation {
+		list-style: none;
+		padding: 15px 20px;
+		margin: 0;
+
+		h4 {
+			padding-left: 15px;
+			margin-bottom: 10px;
+		}
+
+		li {
+			font-family: $font-sans-serif-accent;
+			font-weight: 400;
+			padding: 12px 0;
+
+			a {
+				text-decoration: none;
+				color: $color-primary;
+
+				i {
+					color: transparent;
+					font-size: 0.75em;
+					padding-top: 7px;
+					vertical-align: top;
+					width:20%;
+
+					transition: color 0.3s ease, padding-left 0.3s ease;
+				}
+
+				.text {
+					display: inline-block;
+					font-size: 1em;
+					font-weight: 600;
+					width: 80%;
+
+					transition: color 0.3s ease;
+				}
+
+				&:hover {
+					border-bottom: none;
+
+					i {
+						color: $color-secondary;
+						padding-left: 20px;
+					}
+
+					.text {
+						color: $color-primary-active;
+					}
+				}
+			}
+
+			.active {
+				i {
+					color: $color-secondary;
+					padding-left: 20px;
+				}
+
+				.text {
+					color: $color-primary-active;
+				}
+			}
+		}
+
+		@media screen and (max-width: $media-query-break-small) {
+			display: none;
+		}
+
+		@media screen and (min-width: $media-query-break-small) {
+			display: block !important;
+		}
+	}
+
+	@media screen and (max-width: $media-query-break-small) {
+		height: auto;
+		overflow-y: visible;
+		position: static;
+		width: 100%;
+	}
+}
+
+
+/* Main Content --------------------------------- */
+.mainContent {
+	padding: 50px 75px;
+	margin-left: 350px;
+
+	.highlight {
+		background-color: $color-accent-gray;
+		border: 1px solid $color-accent-gray-active;
+		border-radius: 5px;
+		margin: 0 0 2em 0;
+		overflow-x: scroll;
+		padding: 5px 25px;
+	}
+
+	#searchResults {
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			a {
+				color: $color-primary;
+
+				li {
+					background-color: $color-accent-gray;
+					padding: 20px;
+					margin-bottom: 20px;
+
+					h3 {
+						margin-bottom: 0;
+					}
+
+					p {
+						margin-bottom: 0;
+					}
+				}
+
+				&:hover {
+					li {
+						background-color: $color-primary;
+
+						h3 {
+							color: $color-font-light;
+						}
+
+						p {
+							color: $color-font-light;
+						}
+
+						small {
+							color: $color-font-light;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $media-query-break-small) {
+		margin-left: 0;
+	}
+}
+
+
+/* Animation --------------------------------- */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+	animation-duration: 0.5s;
+	transition-timing-function: ease-in;
+	animation-fill-mode: both;
+	animation-name: fadeIn;
+}

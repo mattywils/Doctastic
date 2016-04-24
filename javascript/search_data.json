@@ -1,0 +1,20 @@
+---
+layout: null
+---
+{
+	{% for documentation in site.documentation %}
+		"{{ documentation.url | slugify }}": {
+			"title": "{{ documentation.title | xml_escape }}",
+			"url": "{{ documentation.url | xml_escape }}",
+			"category": "{{ documentation.category | xml_escape }}",
+			"categories": [
+				{% for category in documentation.categories %}
+					"{{ category | xml_escape }}"
+					{% if documentation.categories.last != category %},{% endif %}
+				{% endfor %}
+			],
+			"excerpt": "{{ documentation.excerpt }}"
+		}
+		{% unless forloop.last %},{% endunless %}
+	{% endfor %}
+}

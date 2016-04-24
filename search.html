@@ -1,0 +1,47 @@
+---
+layout: page
+title: Search
+---
+
+<p><span id="resultsMessage"></span></p>
+<div id="searchResults"></div>
+
+<script type="text/javascript">
+	jQuery(function() {
+
+		var query = sessionStorage.hpsDocumentationSearchQuery;
+		var searchResults = sessionStorage.hpsDocumentationSearchResults;
+
+		if(query === undefined || query === null || query === "") {
+			$('#resultsMessage').html('No search was performed.');
+		} else {
+			if(searchResults !== undefined || searchResults !== null || searchResults !== "") {
+				var results = JSON.parse(searchResults);
+				if(results.length){
+					$('#resultsMessage').html('<strong>' + results.length + '</strong> results were found for <strong>' + query + '</strong>.');
+					
+					var stringBuilder = "<ul>";
+					results.forEach(function(result) {
+						stringBuilder += "<a href='" + result.url + "'>";
+						stringBuilder += "<li>";
+						stringBuilder += "<h3>" + result.title + "</h3>";
+						stringBuilder += "<small>" + result.url + "</small>";
+
+						var separator = "";
+						if(result.category != undefined && result.category != null && result.category != "" && result.categories.length > 0) { separator = ", "}
+
+						stringBuilder += "</br><small>" + result.category + separator + result.categories.join(", ") + "</small>";
+						stringBuilder += "<p>" + result.excerpt + "</p>";
+						stringBuilder += "</li>";
+						stringBuilder += "</a>";
+			        });
+			        stringBuilder += "</ul>";
+
+			        $('#searchResults').html(stringBuilder);
+					return;
+				}
+			}
+			$('#resultsMessage').html('No results were found for <strong>' + query + '</strong>.');
+		}
+	});
+</script>
