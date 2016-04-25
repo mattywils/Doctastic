@@ -12,6 +12,7 @@
 	> Typography
 	> Navigation Bar
 	> Main Content
+	> Landing Sections
 	> Animation
 
 ------------------------------- */
@@ -416,6 +417,164 @@ a {
 	@media screen and (max-width: $media-query-break-small) {
 		margin-left: 0;
 	}
+}
+
+
+/* Landing Sections --------------------------------- */
+.landingHero {
+	background-image: url('../images/desk-background-blue.jpg');
+	background-repeat: none;
+	background-position: center;
+	background-size: cover;
+	height: 100vh;
+	overflow: hidden;
+	width: 100vw;
+
+	@media only screen and (max-width: 875px) {
+		overflow: auto;
+		padding-bottom: 75px;
+	}
+	
+	.container {
+		width: 100%;
+		padding: 0 50px;
+		max-width: 1000px;
+		margin: 0 auto;
+
+		header {
+			padding: 75px 0 50px 0;
+
+			.logo {
+				width: 100%;
+				max-width: 300px;
+
+				@media only screen and (max-width: 875px) {
+					display: block;
+					margin: 0 auto;
+					padding-bottom: 50px;
+				}
+			}
+
+			.buttons {
+				float: right;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+
+				li {
+					float: left;
+					margin: 5px 0;
+					padding-right: 30px;
+
+					&:last-child {
+						padding-right: 0;
+					}
+
+					a {
+						color: $color-primary;
+						display: block;
+						text-decoration: none;
+						background: $color-font-light;
+						border-radius: 10px;
+						width: 200px;
+						padding: 20px 0;
+						text-transform: uppercase;
+						text-align: center;
+						vertical-align: middle;
+						letter-spacing: 2px;
+						font-size: 18px;
+
+						i {
+							color: $color-primary;
+							transition: color 0.3s ease;
+						}
+
+						transition: background 0.3s ease, color 0.3s ease;
+
+						&:hover {
+							color: $color-font-light;
+							background: $color-primary;
+
+							i {
+								color: $color-font-light;
+							}
+						}
+					}
+				}
+
+				@media only screen and (max-width: 875px) {
+					float: none;
+					text-align: center;
+					width: 100%;
+
+					li {
+						display: inline-block;
+						float: none;
+					}
+				}
+
+				@media only screen and (max-width: 500px) {
+					float: none;
+					text-align: center;
+					width: 100%;
+
+					li {
+						display: inline-block;
+						float: none;
+						padding: 20px;
+
+						&:last-child {
+							padding: 20px;
+						}
+					}
+				}
+			}
+		}
+
+		.content {
+			text-align: center;
+
+			h2 {
+				color: $color-font-light;
+				font-size: 38px;
+				font-weight: 300;
+				line-height: 65px;
+			}
+		}
+
+		footer {
+			padding: 0 20px;
+
+			.webBrowserBar {
+				width: 100%;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+			}
+
+			.screenshot {
+				width: 100%;
+			}
+
+			.webBrowserBottom {
+				width: 100%;
+				height: 20px;
+				background-color: #cccccc;
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+
+			@media only screen and (max-width: 500px) {
+				display: none;
+			}
+		}
+	}
+}
+
+.additionalInfo {
+	background-color: $color-background-dark;
+	color: $color-font-light;
+	padding: 50px;
+	text-align: center;
 }
 
 
