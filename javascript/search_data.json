@@ -3,9 +3,16 @@ layout: null
 ---
 {
 	{% for documentation in site.documentation %}
+
+		{% if site.page-type and site.page-type == "single" %}
+			{% assign url = documentation.path | remove: "_documentation/" | remove: ".md" | prepend: "#" | prepend: site.github.url %}
+		{% else %}
+			{% assign url = documentation.url | xml_escape %}
+		{% endif %}
+
 		"{{ documentation.url | slugify }}": {
 			"title": "{{ documentation.title | xml_escape }}",
-			"url": "{{ documentation.url | xml_escape }}",
+			"url": "{{ url }}",
 			"category": "{{ documentation.category | xml_escape }}",
 			"categories": [
 				{% for category in documentation.categories %}

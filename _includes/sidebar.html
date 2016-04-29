@@ -1,55 +1,99 @@
 <section class="navigationBar">
     <a class="homeLink" href="{{ site.github.url }}">
-            <!-- Replace the logo img with the textLogo span if you want to use a text logo. -->
-            <img class="logo" src="{{ "/images/Doctastic.png" | prepend: site.github.url }}" alt="Doctastic!" />
-            <!--<span class="textLogo">Doctastic!</span>-->
+            {% if site.logo %}
+                <img class="logo" src="{{ site.logo | prepend: site.github.url }}" alt="{{ site.title }}" />
+            {% else %}
+                <span class="textLogo">{{ site.title }}</span>
+            {% endif %}
             <small><i class="fa fa-home"></i><span class="text">Documentation Home</span></small>
     </a>
     <div class="search">
-            <form action="get" id="site_search">
+            <form id="site_search">
                 <button type="submit"><i class="fa fa-search"></i></button><input type="text" placeholder="Search Documentation" id="search_box" />
             </form>
     </div>
     <div class="collapseContainer">
         <div class="modileNavigationButton collapseToggle"><i class="fa fa-bars"></i> Menu</div>
         <ul class="navigation collapse">
-            {% for nav in site.data.navigation %}
-                <h4>{{ nav.title }}</h4>
-                {% for pageTitle in nav.pages %}
+            {% if site.data.navigation %}
+                {% for nav in site.data.navigation %}
+                    <h4>{{ nav.title }}</h4>
+                    {% for pageTitle in nav.pages %}
 
-                    {% assign documentation_url = pageTitle | prepend:"/documentation/" | append:".html" %}
-                    {% assign documentation = site.documentation | where:"url",documentation_url | first %}
+                        {% assign documentation_url = pageTitle | prepend:"/documentation/" | append:".html" %}
+                        {% assign documentation = site.documentation | where:"url",documentation_url | first %}
 
-                    {% if documentation %}
-                        {% assign url = documentation.url %}
-                        {% assign title = documentation.title %}
-                    {% else %}
-                        {% if pageTitle == "index" %}
-                            {% assign standardUrl = "/" %}
+                        {% if documentation %}
+                            {% assign url = documentation.url %}
+                            {% assign title = documentation.title %}
                         {% else %}
-                            {% assign standardUrl = pageTitle | prepend:"/" | append:".html" %}
+                            {% if pageTitle == "index" %}
+                                {% assign standardUrl = "/" %}
+                            {% else %}
+                                {% assign standardUrl = pageTitle | prepend:"/" | append:".html" %}
+                            {% endif %}
+
+                            {% assign pageData = site.pages | where:"url",standardUrl | first %}
+
+                            {% assign url = pageData.url %}
+                            {% assign title = pageData.title %}
                         {% endif %}
 
-                        {% assign pageData = site.pages | where:"url",standardUrl | first %}
+                        {% if url == page.url %}
+                            {% assign class = "active" %}
+                        {% else %}
+                            {% assign class = "" %}
+                        {% endif %}
 
-                        {% assign url = pageData.url %}
-                        {% assign title = pageData.title %}
-                    {% endif %}
+                        <li>
+                            {% if site.page-type and site.page-type == "single" %}
+                                <a class="{{ pageTitle }}" href="#{{ pageTitle | prepend: site.github.url }}">
+                            {% else %}
+                                <a class="{{ pageTitle }} {{ class }}" href="{{ url | prepend: site.github.url }}">
+                            {% endif %}
+                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
+                            </a>
+                        </li>
 
-                    {% if url == page.url %}
-                        {% assign class = "active" %}
-                    {% else %}
-                        {% assign class = "" %}
-                    {% endif %}
-
-                    <li>
-                        <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
-                            <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                        </a>
-                    </li>
-
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            {% else %}
+                {% for aPage in site.pages %}
+                    {% if aPage.title and aPage.title != "Search" %}
+                        {% assign url = aPage.url %}
+                        {% assign title = aPage.title %}
+
+                        {% if url == page.url %}
+                            {% assign class = "active" %}
+                        {% else %}
+                            {% assign class = "" %}
+                        {% endif %}
+
+                        <li>
+                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
+                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% for documentation in site.documentation %}
+                        {% assign url = documentation.url %}
+                        {% assign title = documentation.title %}
+
+                        {% if url == page.url %}
+                            {% assign class = "active" %}
+                        {% else %}
+                            {% assign class = "" %}
+                        {% endif %}
+
+                        <li>
+                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
+                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
+                            </a>
+                        </li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </div>
 </section>

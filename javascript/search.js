@@ -18,7 +18,7 @@ jQuery(function() {
 		});
 	});
 
-	$('#site_search').submit(function() {
+	$('#site_search').submit(function(event) {
 		event.preventDefault();
 		var query = $("#search_box").val();
 		var results = window.idx.search(query);
