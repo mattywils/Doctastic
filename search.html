@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: search
 title: Search
 ---
 
@@ -25,12 +25,11 @@ title: Search
 						stringBuilder += "<a href='" + result.url + "'>";
 						stringBuilder += "<li>";
 						stringBuilder += "<h3>" + result.title + "</h3>";
-						stringBuilder += "<small>" + result.url + "</small>";
 
 						var separator = "";
 						if(result.category != undefined && result.category != null && result.category != "" && result.categories.length > 0) { separator = ", "}
 
-						stringBuilder += "</br><small>" + result.category + separator + result.categories.join(", ") + "</small>";
+						stringBuilder += "<small>" + result.category + separator + result.categories.join(", ") + "</small>";
 						stringBuilder += "<p>" + result.excerpt + "</p>";
 						stringBuilder += "</li>";
 						stringBuilder += "</a>";

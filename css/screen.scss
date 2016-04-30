@@ -153,8 +153,16 @@ a {
 	color: $color-secondary;
 	font-weight: 600;
 
+	i {
+		color: $color-secondary;
+	}
+
 	&:hover {
 		color: $color-secondary-active;
+
+		i {
+			color: $color-secondary-active;
+		}
 	}
 }
 
@@ -416,6 +424,35 @@ a {
 
 	@media screen and (max-width: $media-query-break-small) {
 		margin-left: 0;
+	}
+
+	.singlePageSection {
+		padding-bottom: 75px;
+
+		&:last-child {
+			padding-bottom: 0px;
+		}
+
+		a {
+			h1 {
+				color: $color-font-dark;
+
+				i {
+					color: $color-accent-gray;
+					vertical-align: middle;
+					font-size: 20px;
+					margin-left: -30px;
+				}
+			}
+
+			&:hover {
+				h1 {
+					i {
+						color: $color-secondary;
+					}
+				}
+			}
+		}
 	}
 }
 

@@ -3,8 +3,25 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    {% if site.page-type and site.page-type == "single" %}
+        {% assign title = site.title | escape %}
+    {% else if page.title %}
+        {% assign title = page.title | escape %}
+    {% else %}
+        {% assign title = site.title | escape %}
+    {% endif %}
+
+    <title>{{ title }}</title>
+
+    {% if site.page-type and site.page-type == "single" %}
+        {% assign description = site.description %}
+    {% else if page.excerpt %}
+        {% assign description = page.excerpt | strip_html | strip_newlines | truncate: 160 %}
+    {% else %}
+        {% assign description = site.description %}
+    {% endif %}
+
+    <meta name="description" content="{{ description }}">
 
     <link rel="icon" href="{{ "/favicon.ico" | prepend: site.github.url }}" type="image/x-icon" />
     <link rel="shortcut icon" href="{{ "/favicon.ico" | prepend: site.github.url }}" type="image/x-icon" />

@@ -1,18 +1,23 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/0.7.0/lunr.min.js"></script>
 <script type="text/javascript" src="{{ "/javascript/search.js" | prepend: site.github.url }}"></script>
 <script type="text/javascript" src="{{ "/javascript/navigationCollapse.js" | prepend: site.github.url }}"></script>
+
+{% if site.page-type and site.page-type == "single" %}
+<script type="text/javascript" src="{{ "/javascript/activeLinks.js" | prepend: site.github.url }}"></script>
+{% endif %}
+
 <script type="text/javascript" src="{{ "/javascript/jquery.smoothState.min.js" | prepend: site.github.url }}"></script>
 <script type="text/javascript">
-;(function ($) {
-	'use strict';
-	var $body    = $('html, body'),
-	content  = $('#main').smoothState({
-		onStart : {
-			duration: 250,
-			render: function () {
-				$body.animate({ 'scrollTop': 0 });
+	;(function ($) {
+		'use strict';
+		var $body    = $('html, body'),
+		content  = $('#main').smoothState({
+			onStart : {
+				duration: 250,
+				render: function () {
+					$body.animate({ 'scrollTop': 0 });
+				}
 			}
-		}
-	}).data('smoothState');	
-})(jQuery);
+		}).data('smoothState');	
+	})(jQuery);
 </script>
