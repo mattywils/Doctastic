@@ -9,74 +9,70 @@ layout: default
 		<a name="top"></a>
 
 		{% if site.data.navigation %}
-                {% for nav in site.data.navigation %}
-                    {% for pageTitle in nav.pages %}
+            {% for nav in site.data.navigation %}
+                {% for pageTitle in nav.pages %}
 
-                        {% assign documentation_url = pageTitle | prepend:"/documentation/" | append:".html" %}
-                        {% assign currentPage = site.documentation | where:"url",documentation_url | first %}
+                    {% assign documentation_url = pageTitle | prepend:"/documentation/" | append:".html" %}
+                    {% assign currentPage = site.documentation | where:"url",documentation_url | first %}
 
-                        {% if currentPage == Nil %}
-                            {% if pageTitle == "index" %}
-                                {% assign standardUrl = "/" %}
-                            {% else %}
-                                {% assign standardUrl = pageTitle | prepend:"/" | append:".html" %}
-                            {% endif %}
-
-                            {% assign currentPage = site.pages | where:"url",standardUrl | first %}
-                        {% endif %}
-
-                        <section class="singlePageSection">
-	                        <a href="#{{ pageTitle }}">
-	                        	<h1 id="{{ pageTitle }}">
-	                        		<i class="fa fa-link" aria-hidden="true"></i>
-	                        		{{ currentPage.title }}
-                        		</h1>
-                        	</a>
-
-	                        {{ currentPage.content }}
-
-	                        <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
-                        </section>
-
-                    {% endfor %}
-                {% endfor %}
-            {% else %}
-                {% for aPage in site.pages %}
-                    {% if aPage.title and aPage.title != "Search" %}
-                        {% assign url = aPage.url %}
-                        {% assign title = aPage.title %}
-
-                        {% if url == page.url %}
-                            {% assign class = "active" %}
+                    {% if currentPage == Nil %}
+                        {% if pageTitle == "index" %}
+                            {% assign standardUrl = "/" %}
                         {% else %}
-                            {% assign class = "" %}
+                            {% assign standardUrl = pageTitle | prepend:"/" | append:".html" %}
                         {% endif %}
 
-                        <li>
-                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
-                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                            </a>
-                        </li>
+                        {% assign currentPage = site.pages | where:"url",standardUrl | first %}
                     {% endif %}
+
+                    <section class="singlePageSection">
+                        <a href="#{{ pageTitle }}">
+                        	<h1 id="{{ pageTitle }}">
+                        		<i class="fa fa-link" aria-hidden="true"></i>
+                        		{{ currentPage.title }}
+                    		</h1>
+                    	</a>
+
+                        {{ currentPage.content }}
+
+                        <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
+                    </section>
+
                 {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% for sitePage in site.pages %}
+                {% if sitePage.title and sitePage.title != "Search" %}
+                    <section class="singlePageSection">
+                        <a href="#{{ sitePage.title | slugify }}">
+                            <h1 id="{{ sitePage.title | slugify }}">
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                                {{ sitePage.title }}
+                            </h1>
+                        </a>
 
-                {% for documentation in site.documentation %}
-                        {% assign url = documentation.url %}
-                        {% assign title = documentation.title %}
+                        {{ sitePage.content }}
 
-                        {% if url == page.url %}
-                            {% assign class = "active" %}
-                        {% else %}
-                            {% assign class = "" %}
-                        {% endif %}
+                        <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
+                    </section>
+                {% endif %}
+            {% endfor %}
 
-                        <li>
-                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
-                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                            </a>
-                        </li>
-                {% endfor %}
-            {% endif %}
+            {% for documentation in site.documentation %}
+                <section class="singlePageSection">
+                    <a href="#{{ documentation.title | slugify }}">
+                        <h1 id="{{ documentation.title | slugify }}">
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                            {{ documentation.title }}
+                        </h1>
+                    </a>
+
+                    {{ documentation.content }}
+
+                    <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
+                </section>
+            {% endfor %}
+        {% endif %}
 	{% else %}
 		<h1>{{ page.title }}</h1>
 
