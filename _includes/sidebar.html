@@ -39,59 +39,48 @@
                             {% assign title = pageData.title %}
                         {% endif %}
 
-                        {% if url == page.url %}
-                            {% assign class = "active" %}
+                        {% if site.page-type and site.page-type == "single" %}
+                            {% assign navUrl = pageTitle | prepend: "#" %}
+                            {% include navigationLink.html class=pageTitle url=navUrl linkText=title %}
                         {% else %}
-                            {% assign class = "" %}
-                        {% endif %}
-
-                        <li>
-                            {% if site.page-type and site.page-type == "single" %}
-                                <a class="{{ pageTitle }}" href="#{{ pageTitle | prepend: site.github.url }}">
+                            {% if url == page.url %}
+                                {% include navigationLink.html class="active" url=url linkText=title %}
                             {% else %}
-                                <a class="{{ pageTitle }} {{ class }}" href="{{ url | prepend: site.github.url }}">
+                                {% include navigationLink.html url=url linkText=title %}
                             {% endif %}
-                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                            </a>
-                        </li>
+                        {% endif %}
 
                     {% endfor %}
                 {% endfor %}
             {% else %}
-                {% for aPage in site.pages %}
-                    {% if aPage.title and aPage.title != "Search" %}
-                        {% assign url = aPage.url %}
-                        {% assign title = aPage.title %}
-
-                        {% if url == page.url %}
-                            {% assign class = "active" %}
+                {% for sitePage in site.pages %}
+                    {% if sitePage.title and sitePage.title != "Search" %}
+                        {% if site.page-type and site.page-type == "single" %}
+                            {% assign url = sitePage.title | slugify | prepend: "#" %}
+                            {% assign class = sitePage.title | slugify %}
+                            {% include navigationLink.html class=class url=url linkText=sitePage.title %}
                         {% else %}
-                            {% assign class = "" %}
+                            {% if sitePage.url == page.url %}
+                                {% include navigationLink.html class="active" url=sitePage.url linkText=sitePage.title %}
+                            {% else %}
+                                {% include navigationLink.html url=sitePage.url linkText=sitePage.title %}
+                            {% endif %}
                         {% endif %}
-
-                        <li>
-                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
-                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                            </a>
-                        </li>
                     {% endif %}
                 {% endfor %}
 
                 {% for documentation in site.documentation %}
-                        {% assign url = documentation.url %}
-                        {% assign title = documentation.title %}
-
-                        {% if url == page.url %}
-                            {% assign class = "active" %}
+                    {% if site.page-type and site.page-type == "single" %}
+                        {% assign url = documentation.title | slugify | prepend: "#" %}
+                        {% assign class = documentation.title | slugify %}
+                        {% include navigationLink.html class=class url=url linkText=documentation.title %}
+                    {% else %}
+                        {% if documentation.url == page.url %}
+                            {% include navigationLink.html class="active" url=documentation.url linkText=documentation.title %}
                         {% else %}
-                            {% assign class = "" %}
+                            {% include navigationLink.html url=documentation.url linkText=documentation.title %}
                         {% endif %}
-
-                        <li>
-                            <a class="{{ class }}" href="{{ url | prepend: site.github.url }}">
-                                <i class="fa fa-arrow-right"></i><span class="text">{{ title }}</span>
-                            </a>
-                        </li>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         </ul>
