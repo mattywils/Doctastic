@@ -102,15 +102,6 @@ h1 {
 	font-weight: 600;
 	margin: 0;
 	margin-bottom: .75em;
-
-	&:after {
-		    content: "";
-		    display: block;
-		    background: $color-primary-transparent;
-		    width: 100%;
-		    height: 4px;
-		    margin-top: .5em;
-	}
 }
 
 h2 {
@@ -366,7 +357,7 @@ a {
 /* Main Content --------------------------------- */
 .mainContent {
 	padding: 50px 75px;
-	margin-left: 350px;
+	margin-left: 375px;
 
 	.highlight {
 		background-color: $color-accent-gray;
@@ -426,7 +417,7 @@ a {
 	}
 
 	.singlePageSection {
-		padding-bottom: 75px;
+		padding-bottom: 50px;
 
 		&:last-child {
 			padding-bottom: 0px;
@@ -440,7 +431,8 @@ a {
 					color: $color-accent-gray;
 					vertical-align: middle;
 					font-size: 20px;
-					margin-left: -30px;
+					padding-right: 5px;
+					margin-left: -35px;
 				}
 			}
 
@@ -450,6 +442,22 @@ a {
 						color: $color-secondary;
 					}
 				}
+			}
+		}
+
+		&:after {
+		    content: "";
+		    display: block;
+		    background: $color-accent-gray;
+		    width: 100%;
+		    height: 4px;
+		    padding: 0 75px;
+		    margin: 50px 0 0 -75px;
+		}
+
+		&:last-child {
+			&:after {
+				display: none;
 			}
 		}
 	}
