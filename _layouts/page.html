@@ -30,7 +30,7 @@ layout: default
             {% endfor %}
         {% else %}
             {% for sitePage in site.pages %}
-                {% if sitePage.title and sitePage.title != "Search" %}
+                {% if sitePage.layout == "page" %}
                     {% assign hrefAndId = sitePage.title | slugify %}
                     {% include singlePageSection.html href=hrefAndId sectionId=hrefAndId title=sitePage.title content=sitePage.content %}
                 {% endif %}
