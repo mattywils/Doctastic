@@ -54,7 +54,7 @@
                 {% endfor %}
             {% else %}
                 {% for sitePage in site.pages %}
-                    {% if sitePage.title and sitePage.title != "Search" %}
+                    {% if sitePage.layout == "page" %}
                         {% if site.page-type and site.page-type == "single" %}
                             {% assign url = sitePage.title | slugify | prepend: "#" %}
                             {% assign class = sitePage.title | slugify %}
