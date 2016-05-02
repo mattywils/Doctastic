@@ -5,10 +5,9 @@ layout: default
 {% include sidebar.html %}
 
 <section class="mainContent fadeIn">
-	{% if site.page-type and site.page-type == "single" %}
-		<a name="top"></a>
-
-		{% if site.data.navigation %}
+    {% if site.page-type and site.page-type == "single" %}
+        <a name="top"></a>
+        {% if site.data.navigation %}
             {% for nav in site.data.navigation %}
                 {% for pageTitle in nav.pages %}
 
@@ -25,57 +24,26 @@ layout: default
                         {% assign currentPage = site.pages | where:"url",standardUrl | first %}
                     {% endif %}
 
-                    <section class="singlePageSection">
-                        <a href="#{{ pageTitle }}">
-                        	<h1 id="{{ pageTitle }}">
-                        		<i class="fa fa-link" aria-hidden="true"></i>
-                        		{{ currentPage.title }}
-                    		</h1>
-                    	</a>
-
-                        {{ currentPage.content }}
-
-                        <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
-                    </section>
+                    {% include singlePageSection.html href=pageTitle sectionId=pageTitle title=currentPage.title content=currentPage.content %}
 
                 {% endfor %}
             {% endfor %}
         {% else %}
             {% for sitePage in site.pages %}
                 {% if sitePage.title and sitePage.title != "Search" %}
-                    <section class="singlePageSection">
-                        <a href="#{{ sitePage.title | slugify }}">
-                            <h1 id="{{ sitePage.title | slugify }}">
-                                <i class="fa fa-link" aria-hidden="true"></i>
-                                {{ sitePage.title }}
-                            </h1>
-                        </a>
-
-                        {{ sitePage.content }}
-
-                        <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
-                    </section>
+                    {% assign hrefAndId = sitePage.title | slugify %}
+                    {% include singlePageSection.html href=hrefAndId sectionId=hrefAndId title=sitePage.title content=sitePage.content %}
                 {% endif %}
             {% endfor %}
 
             {% for documentation in site.documentation %}
-                <section class="singlePageSection">
-                    <a href="#{{ documentation.title | slugify }}">
-                        <h1 id="{{ documentation.title | slugify }}">
-                            <i class="fa fa-link" aria-hidden="true"></i>
-                            {{ documentation.title }}
-                        </h1>
-                    </a>
-
-                    {{ documentation.content }}
-
-                    <a href="#top">Back to top <i class="fa fa-arrow-circle-up"></i></a>
-                </section>
+                {% assign hrefAndId = documentation.title | slugify %}
+                {% include singlePageSection.html href=hrefAndId sectionId=hrefAndId title=documentation.title content=documentation.content %}
             {% endfor %}
         {% endif %}
-	{% else %}
-		<h1>{{ page.title }}</h1>
+    {% else %}
+        <h1>{{ page.title }}</h1>
 
-		{{ content }}
-	{% endif %}
+        {{ content }}
+    {% endif %}
 </section>
