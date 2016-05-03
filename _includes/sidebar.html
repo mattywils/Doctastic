@@ -1,7 +1,7 @@
 <section class="navigationBar">
     <a class="homeLink" href="{{ site.github.url }}">
-            {% if site.logo %}
-                <img class="logo" src="{{ site.logo | prepend: site.github.url }}" alt="{{ site.title }}" />
+            {% if site.doctastic-logo %}
+                <img class="logo" src="{{ site.doctastic-logo | prepend: site.github.url }}" alt="{{ site.title }}" />
             {% else %}
                 <span class="textLogo">{{ site.title }}</span>
             {% endif %}
@@ -39,7 +39,7 @@
                             {% assign title = pageData.title %}
                         {% endif %}
 
-                        {% if site.page-type and site.page-type == "single" %}
+                        {% if site.doctastic-page-type and site.doctastic-page-type == "single" %}
                             {% assign navUrl = pageTitle | prepend: "#" %}
                             {% include navigationLink.html class=pageTitle url=navUrl linkText=title %}
                         {% else %}
@@ -55,7 +55,7 @@
             {% else %}
                 {% for sitePage in site.pages %}
                     {% if sitePage.layout == "page" %}
-                        {% if site.page-type and site.page-type == "single" %}
+                        {% if site.doctastic-page-type and site.doctastic-page-type == "single" %}
                             {% assign url = sitePage.title | slugify | prepend: "#" %}
                             {% assign class = sitePage.title | slugify %}
                             {% include navigationLink.html class=class url=url linkText=sitePage.title %}
@@ -70,7 +70,7 @@
                 {% endfor %}
 
                 {% for documentation in site.documentation %}
-                    {% if site.page-type and site.page-type == "single" %}
+                    {% if site.doctastic-page-type and site.doctastic-page-type == "single" %}
                         {% assign url = documentation.title | slugify | prepend: "#" %}
                         {% assign class = documentation.title | slugify %}
                         {% include navigationLink.html class=class url=url linkText=documentation.title %}
