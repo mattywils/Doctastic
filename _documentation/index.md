@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Sample Documentation Page 2 Blah blH
+title: Documentation Landing Page
 categories: [Sample, Documentation, Categories!]
 excerpt: This is a description of the documentation page.
 ---
 
-## Documentation Page 2
+## what is here
 
-This is another sample documentaiton page!
+This is the main landing page for documentation section of the website.
