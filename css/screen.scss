@@ -164,7 +164,7 @@ a {
 
 	.homeLink {
 		display: block;
-		background-image: url('../images/top-background-image.jpg');
+		background-image: url('..{{ site.doctastic-logo-section-background-image }}');
 		background-size: cover;
 
 		.logo {
