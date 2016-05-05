@@ -1,7 +1,5 @@
-- title: Section 1
+- title:
   pages:
   - index
-- title: Section 2
-  pages:
-  - SampleDocumentationPage2
-  - SampleDocumentationPage
+  - ThemeSettings
+  - HelpfulLinks

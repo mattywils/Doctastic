@@ -1,10 +1,12 @@
 ---
 layout: page
-title: Documentation Landing Page
-categories: [Sample, Documentation, Categories!]
-excerpt: This is a description of the documentation page.
+title: Introduction
+categories: [Doctastic Theme Documentation, Getting Started, start here, into]
+excerpt: Getting started with Doctastic, a free, open-source Jekyll documentation theme.
 ---
 
-## what is here
+Doctastic is a free, open-source, responsive, jekyll theme for easily creating documentation for your product.
 
-This is the main landing page for documentation section of the website.
+#### Jekyll
+
+Because Doctastic is a [Jekyll](https://jekyllrb.com/) theme, having a simple understanding of Jekyll and how it works may make using the Doctastic theme easier.  However, with the help of this documentation page you should be able to get documentation added to your website or your repositories [GitHub Page]() with very little effort.

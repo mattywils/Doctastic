@@ -1,12 +1,10 @@
 # Site Settings
-title: Your Sites Title
+title: Doctastic!  A free, open-source, and responsive jekyll theme for creating documentation.
 email: your-email@domain.com
 description: >
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for Google
-  search results) and in your feed.xml site description.
+  Doctastic is a free, open-source, responsive jekyll theme for creating documentation.
 
-google_analytics_id: UA-50755011-1
+google_analytics_id: UA-77267348-1
 
 # Doctastic Theme Settings
 doctastic-logo: /images/Doctastic.png
