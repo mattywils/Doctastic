@@ -1,26 +1,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/0.7.0/lunr.min.js"></script>
-<script type="text/javascript" src="{{ "/javascript/search.js" | prepend: site.github.url }}"></script>
-<script type="text/javascript" src="{{ "/javascript/navigationCollapse.js" | prepend: site.github.url }}"></script>
+<script type="text/javascript" src="{{ "/assets/javascript/search.js" | prepend: site.github.url }}"></script>
+<script type="text/javascript" src="{{ "/assets/javascript/navigationCollapse.js" | prepend: site.github.url }}"></script>
 
 {% if site.doctastic-page-type and site.doctastic-page-type == "single" %}
-<script type="text/javascript" src="{{ "/javascript/activeLinks.js" | prepend: site.github.url }}"></script>
+<script type="text/javascript" src="{{ "/assets/javascript/activeLinks.js" | prepend: site.github.url }}"></script>
 {% endif %}
-
-<script type="text/javascript" src="{{ "/javascript/jquery.smoothState.min.js" | prepend: site.github.url }}"></script>
-<script type="text/javascript">
-	;(function ($) {
-		'use strict';
-		var $body    = $('html, body'),
-		content  = $('#main').smoothState({
-			onStart : {
-				duration: 250,
-				render: function () {
-					$body.animate({ 'scrollTop': 0 });
-				}
-			}
-		}).data('smoothState');	
-	})(jQuery);
-</script>
 
 {% if site.google_analytics_id %}
 <script>
@@ -31,6 +15,5 @@
 
   ga('create', '{{ site.google_analytics_id }}', 'auto');
   ga('send', 'pageview');
-
 </script>
 {% endif %}
