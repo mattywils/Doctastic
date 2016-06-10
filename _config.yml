@@ -21,6 +21,7 @@ doctastic-secondary-color-active: rgb(250,215,87)
 doctastic-main-font: Open Sans
 doctastic-accent-font: Open Sans
 
+doctastic-github-repo-url: https://github.com/mattywils/Doctastic
 
 # Build Settings
 collections:

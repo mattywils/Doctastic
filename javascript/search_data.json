@@ -4,8 +4,8 @@ layout: null
 {
 	{% for documentation in site.documentation %}
 
-		{% if site.page-type and site.page-type == "single" %}
-			{% assign url = documentation.path | remove: "_documentation/" | remove: ".md" | prepend: "#" | prepend: site.github.url %}
+		{% if site.doctastic-page-type and site.doctastic-page-type == "single" %}
+			{% assign url = documentation.title | slugify | remove: ".md" | prepend: "#" | prepend: "/" | prepend: site.github.url %}
 		{% else %}
 			{% assign url = documentation.url | xml_escape %}
 		{% endif %}
