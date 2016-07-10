@@ -11,7 +11,7 @@ google_analytics_id: UA-50755011-1
 # Doctastic Theme Settings
 doctastic-logo: /assets/images/Doctastic.png
 doctastic-logo-section-background-image: /assets/images/top-background-image.jpg
-doctastic-page-type: multi
+doctastic-page-type: single
 
 doctastic-primary-color: rgb(96,188,216)
 doctastic-primary-color-active: rgb(102,199,229)

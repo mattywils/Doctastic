@@ -31,8 +31,9 @@ $color-secondary-active: {{ site.doctastic-secondary-color-active }};
 $color-font-light: #fefefe;
 $color-header-font-dark: #333333;
 $color-paragraph-font-dark: #666666;
+$color-font-secondary: #cdcdcd;
 
-$color-background-light: #fdfdfd;
+$color-background-light: #f3f3f3;
 
 $color-accent-gray: #f3f3f3;
 $color-accent-gray-active: #eaeaea;
@@ -437,7 +438,7 @@ a {
 				color: $color-header-font-dark;
 
 				i {
-					color: $color-accent-gray;
+					color: $color-font-secondary;
 					vertical-align: middle;
 					font-size: 20px;
 					padding-right: 5px;
@@ -469,6 +470,29 @@ a {
 
 			&:after {
 				display: none;
+			}
+		}
+	}
+
+	.subHeaderData {
+		margin-top: -20px;
+		margin-bottom: 20px;
+
+		small {
+			a {
+				i {
+					color: $color-font-secondary;
+				}
+
+				color: $color-font-secondary;
+
+				&:hover {
+					color: $color-secondary;
+
+					i {
+						color: $color-secondary;
+					}
+				}
 			}
 		}
 	}
